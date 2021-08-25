@@ -1,0 +1,12 @@
+name: recursive_learning_first_steps
+title: recursive_learning_first_steps
+username:
+account: foxeswithdata
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2537738
+bundleId: 3353853
+url: https://foxeswithdata.shinyapps.io/recursive_learning_first_steps/
+when: 1593944675.62277
+asMultiple: FALSE
+asStatic: FALSE

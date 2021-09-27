@@ -2,8 +2,8 @@ find_mid_ts <- function(plant, W0, Tend, deltat = 1){
   maxM_ts <- find_opt_ts(plant, W0, Tend, kf=1, deltat)
   maxS_ts <- find_opt_ts(plant, W0, Tend, kf=0, deltat)
   
-  outmaxM <- plant_out_df(plant, W0 = Water_input_total, ts = maxM_ts, Tend = Tend, kf = 1, deltat = 1)
-  outmaxS <- plant_out_df(plant, W0 = Water_input_total, ts = maxS_ts, Tend = Tend, kf = 0, deltat = 1)
+  outmaxM <- plant_out_df(plant, W0 = W0, ts = maxM_ts, Tend = Tend, kf = 1, deltat = 1)
+  outmaxS <- plant_out_df(plant, W0 = W0, ts = maxS_ts, Tend = Tend, kf = 0, deltat = 1)
   
   maxM_st <-outmaxM$carbon_pool_val[outmaxM$time == max(outmaxM$time) & outmaxM$carbon_pool_type == "Storage"]
   maxM_bi <-outmaxM$carbon_pool_val[outmaxM$time == max(outmaxM$time) & outmaxM$carbon_pool_type == "Biomass"]

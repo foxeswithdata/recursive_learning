@@ -23,6 +23,8 @@ all_sims <- lapply(files, function(file_name){
   return(simulation)
 })
 
+sim_test <- all_sims[[3]]
+
 files_mem <- list.files("out/simulations/check_strategy/", pattern = "simulation_memory_k_")
 
 all_sims_mem <- lapply(files_mem, function(file_name){
@@ -282,13 +284,13 @@ p_sums <- ggplot(out_all_sums_sub, aes(fill=type,
                     values = foxes_palettes$main[c(5,4,1,2)]) + 
   scale_alpha_continuous("Time Window\n(d)", range = c(0.5, 1)) +
   labs(x = expression(paste(" ")),
-       y = "Day-Normalized Fitness Output (kgC/d)") +
+       y = "Day-Normalized Fitness Output (kgC)") +
   scale_x_discrete(labels = c("OCT", "Brute-Force", 
                               "MPC No Memory", 
                               "MPC 5d Memory")) +
   facet_wrap(vars(goal_func), nrow = 1, scales = "free_x") +
   foxes_theme + 
-  guides(fill = FALSE) + 
+  guides(fill = "none") + 
   theme(legend.position =  "right", axis.text.x = element_text(angle = 45, hjust = 1),
         plot.margin = margin(t = 10,  # Top margin
                              r = 10,  # Right margin
@@ -316,7 +318,7 @@ p_final <- ggplot(out_all_final_sub, aes(fill=type,
                               "MPC 5d Memory")) +
   facet_wrap(vars(goal_func), nrow = 1, scales = "free_x") +
   foxes_theme + 
-  guides(alpha = FALSE) +
+  guides(alpha = "none") +
   theme(legend.position = "right", axis.text.x = element_text(angle = 45, hjust = 1),
         plot.margin = margin(t = 10,  # Top margin
                              r = 10,  # Right margin
@@ -331,7 +333,7 @@ p <- plot_grid(p_sums,p_final, labels = c('A', 'B'), label_size = 14,
                label_colour = "#083855")
 p
 
-# file_figure <- tempfile(paste("fitnessoutputs", sep = "_"), tmpdir = out_folder, fileext = ".png")
+file_figure <- tempfile(paste("fitnessoutputs", sep = "_"), tmpdir = out_folder, fileext = ".png")
 ggsave(file_figure, plot = p, device = NULL, path = NULL,
        scale = 1, width = 330, height = 200, dpi = 300, limitsize = TRUE,
        units =  "mm")
@@ -355,13 +357,13 @@ p_sums <- ggplot(out_all_sums_sub, aes(fill=type,
                     values = foxes_palettes$main[c(5,4,1,2)]) + 
   scale_alpha_continuous("Time Window\n(d)", range = c(0.5, 1)) +
   labs(x = expression(paste(" ")),
-       y = "Average Daily Biomass Size (kgC/d)") +
+       y = "Average Daily Biomass Size (kgC)") +
   scale_x_discrete(labels = c("OCT", "Brute-Force", 
                               "MPC No Memory", 
                               "MPC 5d Memory")) +
   facet_wrap(vars(goal_func), nrow = 1, scales = "free_x") +
   foxes_theme + 
-  guides(fill = FALSE) + 
+  guides(fill = "none") + 
   theme(legend.position =  "right", axis.text.x = element_text(angle = 45, hjust = 1),
         plot.margin = margin(t = 10,  # Top margin
                              r = 10,  # Right margin
@@ -389,7 +391,7 @@ p_final <- ggplot(out_all_final_sub, aes(fill=type,
                               "MPC 5d Memory")) +
   facet_wrap(vars(goal_func), nrow = 1, scales = "free_x") +
   foxes_theme + 
-  guides(alpha = FALSE) +
+  guides(alpha = "none") +
   theme(legend.position = "right", axis.text.x = element_text(angle = 45, hjust = 1),
         plot.margin = margin(t = 10,  # Top margin
                              r = 10,  # Right margin
@@ -428,13 +430,13 @@ p_sums <- ggplot(out_all_sums_sub, aes(fill=type,
                     values = foxes_palettes$main[c(5,4,1,2)]) + 
   scale_alpha_continuous("Time Window\n(d)", range = c(0.5, 1)) +
   labs(x = expression(paste(" ")),
-       y = "Average Daily Storage Size (kgC/d)") +
+       y = "Average Daily Storage Size (kgC)") +
   scale_x_discrete(labels = c("OCT", "Brute-Force", 
                               "MPC No Memory", 
                               "MPC 5d Memory")) +
   facet_wrap(vars(goal_func), nrow = 1, scales = "free_x") +
   foxes_theme + 
-  guides(fill = FALSE) + 
+  guides(fill = "none") + 
   theme(legend.position =  "right", axis.text.x = element_text(angle = 45, hjust = 1),
         plot.margin = margin(t = 10,  # Top margin
                              r = 10,  # Right margin
@@ -456,13 +458,13 @@ p_final <- ggplot(out_all_final_sub, aes(fill=type,
                     values = foxes_palettes$main[c(5,4,1,2)]) + 
   scale_alpha_continuous("Time Window\n(d)", range = c(0.5, 1)) +
   labs(x = expression(paste("Model Type ")),
-       y = "Final Biomass Size (kgC)") +
+       y = "Final Storage Size (kgC)") +
   scale_x_discrete(labels = c("OCT", "Brute-Force", 
                               "MPC No Memory", 
                               "MPC 5d Memory")) +
   facet_wrap(vars(goal_func), nrow = 1, scales = "free_x") +
   foxes_theme + 
-  guides(alpha = FALSE) +
+  guides(alpha = "none") +
   theme(legend.position = "right", axis.text.x = element_text(angle = 45, hjust = 1),
         plot.margin = margin(t = 10,  # Top margin
                              r = 10,  # Right margin
@@ -500,7 +502,7 @@ p_final <- ggplot(out_all_final_sub, aes(fill=type,
                     values = foxes_palettes$main[c(1,2)]) + 
   scale_alpha_continuous("Time Window\n(d)", range = c(0.5, 1)) +
   labs(x = expression(paste("Model Type ")),
-       y = "Final Storage Buffer Size (kgC/kgC)") +
+       y = "Final Storage Concentration (kgC/kgC)") +
   scale_x_discrete(labels = c("MPC No Memory", 
                               "MPC 5d Memory")) +
   foxes_theme + 
@@ -516,11 +518,88 @@ ggsave(file_figure, plot = p_final, device = NULL, path = NULL,
        scale = 1, width = 260, height = 180, dpi = 300, limitsize = TRUE,
        units =  "mm")
 
-
 #### Evaluate Ut Values
 
+out_mpc <- out_df %>%
+  dplyr::filter(goal_func %in% c(0,0.65,1) & memory == 5 & time_window == 25 & k == 3)
+out_optim <- out_optim[,c(1:7,9:12)]
+out_opt = out_optim %>%
+  dplyr::filter(goal_func %in% c(0,0.65,1) & k == 3)
+out_matlab_new = out_matlab %>%
+  dplyr::filter(goal_func %in% c(0,0.65,1) & k == 3)
+
+out_opt_update <- out_opt %>%
+  group_by(goal_func) %>%
+  mutate(alloc = ifelse(time <= ts, 0.06, 0))
 
 
+out_opt$type = "OCT"
+out_mpc$type = "MPC"
+out_matlab_new$type = "Brute-Force"
+
+out_all <- plyr::rbind.fill(out_opt_update, out_mpc, out_matlab_new)
+out_all$type <- factor(out_all$type, levels = c("OCT", "Brute-Force", "MPC"))
 
 
+p_ut_group <- ggplot(out_all, aes(y=alloc,
+                                  x=time,
+                                  group = k)) + 
+  geom_line(alpha=0.85, colour = "#083855") + 
+  labs(x = "Time (d)",
+       y = expression(paste("Allocation Parameter ", u[t], " (kgCk", g^-1, "C)" ))) +
+  facet_grid(type~goal_func, labeller = labeller(goal_func = c("0" = "MaxS",
+                                                               "0.65" = "0.65",
+                                                               "1" = "MaxM"))) +
+  foxes_theme + 
+  theme(legend.position = "right", axis.text.x = element_text(angle = 45, hjust = 1),
+        plot.margin = margin(t = 10,  # Top margin
+                             r = 10,  # Right margin
+                             b = 10,  # Bottom margin
+                             l = 10))
+p_ut_group
 
+file_figure <- tempfile(paste("ut_models", sep = "_"), tmpdir = out_folder, fileext = ".png")
+ggsave(file_figure, plot = p_ut_group, device = NULL, path = NULL,
+       scale = 1, width = 260, height = 180, dpi = 300, limitsize = TRUE,
+       units =  "mm")
+
+out_mpc <- out_df %>%
+  dplyr::filter(goal_func %in% c(1) & k == 4)
+
+p_ut_group <- ggplot(out_mpc, aes(y=alloc,
+                                  x=time,
+                                  group = k)) + 
+  geom_line(alpha=0.85, colour = "#083855") + 
+  labs(x = "Time (d)",
+       y = expression(paste("Allocation Parameter ", u[t], " (kgCk", g^-1, "C)" ))) +
+  facet_grid(time_window~memory, labeller = labeller(memory = c("0" = "No Memory",
+                                                                "5" = "5 day Memory"),
+                                                     time_window = c("10" = "tw=10d",
+                                                                     "15" = "tw=15d",
+                                                                     "20" = "tw=20d",
+                                                                     "25" = "tw=25d"))) +
+  foxes_theme + 
+  theme(legend.position = "right", axis.text.x = element_text(angle = 45, hjust = 1),
+        plot.margin = margin(t = 10,  # Top margin
+                             r = 10,  # Right margin
+                             b = 10,  # Bottom margin
+                             l = 10))
+p_ut_group
+
+file_figure <- tempfile(paste("ut_mpc", sep = "_"), tmpdir = out_folder, fileext = ".png")
+ggsave(file_figure, plot = p_ut_group, device = NULL, path = NULL,
+       scale = 1, width = 260, height = 180, dpi = 300, limitsize = TRUE,
+       units =  "mm")
+
+### percentage storage of total biomass 
+
+out_all_st <- out_all %>% 
+  dplyr::filter(goal_func == 1) %>%
+  dplyr::group_by(k, type, time_window, memory, time) %>%
+  dplyr::summarise(st_perc = storage / (biomass+storage)) %>%
+  dplyr::group_by(k, type, time_window, memory) %>%
+  dplyr::summarise(st_min = min(st_perc) * 100,
+                   st_max = max(st_perc) * 100)
+
+View(out_all_st)
+out_all_st_mpc <- out_all_st %>% filter(type == "MPC")
